@@ -1,0 +1,88 @@
+
+# definindo a ordem dos Dados
+import random
+
+
+class Dado (object):
+    def __init__(self, cores, lados):
+        self.cores = cores
+        self.lados = lados
+    def criar_dados():
+        verde = Dado('verde', [cérebro, cérebro, cérebro, passo, passo, tiro])
+        amarelo = Dado('amarelo', [tiro, tiro, passo, passo, cérebro, cérebro])
+        vermelho = Dado('vermelho', [tiro, tiro, tiro, passo, passo, cérebro])
+        dados = [verde, verde, verde, verde, verde, verde, amarelo, amarelo, amarelo, amarelo, vermelho, vermelho,
+                 vermelho]
+        shuffle (dados)
+        return dados
+
+    print("ZOMBIE DICE - Protótipo semana 4. Aluna: Fernanda Fava. Curso: ADS")
+    print("Sejam bem-vindos!")
+    # definindo o número de jogadores, utilizando condicionais
+    Num_Jogadores = 0
+    while (Num_Jogadores < 2):
+        Num_Jogadores = int(input("Digite o número de jogadores: "))
+        if (Num_Jogadores < 2):
+            print("ATENÇÃO: são necessários ao menos 2 jogadores")
+    # definindo a lista de jogadores, baseado no número informado pelo usuário
+    Listadejogadores = []
+    for i in range(Num_Jogadores):
+        nome = str(input('Escreva o nome do jogador' + str(i + 1) + ":")).strip()
+        Listadejogadores.append(nome)
+    DadoVerde = "CPCTPC"
+    DadoAmarelo = "TPCTPC"
+    DadoVermelho = "TPTCPT"
+    ListaDados = [DadoVerde, DadoVerde, DadoVerde, DadoVerde, DadoVerde, DadoVerde, DadoAmarelo, DadoAmarelo,
+                  DadoAmarelo, DadoAmarelo, DadoVermelho, DadoVermelho, DadoVermelho]
+    print("Prontos, zumbis? Vamos lá!!!")
+    JogadorAtual = 0
+    DadosSorteados = []
+    Tiros = 0
+    Cérebros = 0
+    Passos = 0
+    while True:
+        print('Turno do jogador {}'.format(Listadejogadores[JogadorAtual]))
+        print('-' * 36)
+        for i in range(0, 3, 1):
+            NumSorteado = random.choice (0, 12)
+            DadosSorteados = ListaDados [NumSorteado]
+            if DadosSorteados == "CPCTPC":
+                CorDado = "Verde"
+            elif DadosSorteados == "TPCTPC":
+                CorDado = "Amarelo"
+            else:
+                CorDado = "Vermelho"
+                print('A cor de dado sorteada foi: {}'.format(CorDado))
+            print('-' * 36)
+            print("Após o sorteio dos dados, as faces sorteadas foram: ")
+            print ('-) * 37')
+            for i in range (0, 3, 1):
+                FaceSorteada = random.choice(DadosSorteados)
+                if FaceSorteada == "C":
+                print('Parabéns, você comeu 1 cérebro!!')
+                cérebros = cérebros + 1
+                elif FaceSorteada == "P":
+                print("Oh não, sua vítima fugiu!")
+                passos = passos + 1
+                else FaceSorteada == "T":
+                print("Você levou 1 tiro, preste mais atenção ao seu redor, caro zumbi!!")
+                tiros = tiros + 1
+            print("-" * 37)
+            print ('PONTUAÇÃO ATUAL')
+            print('Cérebros: {}'.format(cérebros))
+            print("Passos: {}".format(passos))
+            print('Tiros: {}'.format(Tiros))
+            print("-" * 37)
+            ContinuarTurno = str(input"Deseja continuar jogando os dados? Pressione Y para sim e N para não: " )
+            if ContinuarTurno == "N":
+                JogadorAtual = JogadorAtual + 1
+                DadosSorteados = []
+                Cérebros = 0
+                Passos = 0
+                Tiros = 0
+                if JogadorAtual == len(Listadejogadores):
+                    print('Final do protótipo da semana 4')
+                    break
+            else:
+            print("Início de uma nova rodada do jogador atual")
+            DadosSorteados = []
